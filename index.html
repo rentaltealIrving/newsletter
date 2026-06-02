@@ -54,12 +54,12 @@
             </div>
             <span class="font-display font-extrabold text-xl tracking-tight text-primary uppercase">Irving Rental Tea</span>
         </div>
-        <button class="bg-accent text-white px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform brew-shadow">
+        <button onclick="document.getElementById('signup-section').scrollIntoView({ behavior: 'smooth' })" class="bg-accent text-white px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform brew-shadow">
             SUBSCRIBE
         </button>
     </nav>
 
-    <header class="max-w-7xl mx-auto pt-16 pb-20 px-6 text-center">
+    <header id="signup-section" class="max-w-7xl mx-auto pt-16 pb-20 px-6 text-center">
         <div class="inline-block bg-primary/5 text-primary border border-primary/20 px-4 py-1 rounded-full text-xs font-bold mb-6 uppercase tracking-widest">
             📅 Issue: June 2, 2026
         </div>
@@ -73,8 +73,8 @@
         <div class="max-w-md mx-auto relative">
             <div class="flex flex-col sm:flex-row gap-3">
                 <input type="email" id="subscriber-email" placeholder="Enter your email address" class="flex-1 px-6 py-4 rounded-xl border-2 border-slate-200 focus:border-primary focus:outline-none text-lg">
-                <button onclick="sendSubscriptionEmail()" class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-opacity-90 transition brew-shadow">
-                    Join 12,000+
+                <button type="button" onclick="sendSubscriptionEmail()" class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-opacity-90 transition brew-shadow">
+                    Subscribe
                 </button>
             </div>
             <p class="text-xs text-slate-400 mt-4 italic">Irving's fastest growing business-casual newsletter for hosts and neighbors.</p>
@@ -206,16 +206,23 @@
         function sendSubscriptionEmail() {
             const emailInput = document.getElementById('subscriber-email');
             const emailValue = emailInput.value.trim();
-            const targetEmail = "hello@irvingrentaltea.com"; // Replace with your actual destination
-            const subject = encodeURIComponent("Subscribe to The Irving Rental Tea");
-            const body = encodeURIComponent(`I would like to subscribe to the newsletter.\n\nMy email: ${emailValue}`);
             
-            // Trigger mailto link
+            if (!emailValue || !emailValue.includes('@')) {
+                emailInput.classList.add('border-accent');
+                setTimeout(() => emailInput.classList.remove('border-accent'), 2000);
+                return;
+            }
+
+            const targetEmail = "hello@irvingrentaltea.com";
+            const subject = encodeURIComponent("Subscribe to The Irving Rental Tea");
+            const body = encodeURIComponent(`I would like to subscribe to the newsletter.\n\nSubscriber Email: ${emailValue}`);
+            
+            // Using a direct assignment which is most reliable for mailto in browsers
             window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("The Irving Rental Tea: Subscription logic and layout ready.");
+            console.log("The Irving Rental Tea: Navigation and mail logic active.");
         });
     </script>
 </body>
