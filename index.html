@@ -32,23 +32,24 @@
         }
         .animate-steam { animation: steam 2s ease-in-out infinite; }
         body { background-color: #FFFFFF; }
+        /* Modal Animation */
+        .modal-enter { animation: modalIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
     </style>
 </head>
 <body class="text-slate-900 font-sans">
 
     <nav class="sticky top-0 z-50 bg-white border-b-2 border-primary/10 py-4 px-6 md:px-12 flex justify-between items-center">
         <div class="flex items-center space-x-3">
-            <!-- Custom Integrated Logo: House + Tea + Newsletter -->
             <div class="relative flex items-center justify-center">
                 <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="hover:scale-105 transition-transform cursor-pointer">
-                    <!-- The House Base (Primary Navy) -->
                     <path d="M20 45 L50 15 L80 45 V85 H20 Z" fill="#1E22AA"/>
-                    <!-- The Newsletter/Mail Slot Detail (Knockout White) -->
                     <rect x="35" y="55" width="30" height="18" rx="1.5" fill="white"/>
                     <path d="M35 55 L50 64 L65 55" stroke="#1E22AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <!-- The Tea Cup Handle (Attached to House) -->
                     <path d="M80 58 C88 58 88 75 80 75" stroke="#1E22AA" stroke-width="5" stroke-linecap="round" fill="none"/>
-                    <!-- The Steam (Newsletter Flap Accent) -->
                     <path d="M42 8 Q50 -2 58 8" stroke="#FF5A5F" stroke-width="3" stroke-linecap="round" class="animate-steam"/>
                 </svg>
             </div>
@@ -73,11 +74,13 @@
         <div class="max-w-md mx-auto relative">
             <div class="flex flex-col sm:flex-row gap-3">
                 <input type="email" id="subscriber-email" placeholder="Enter your email address" class="flex-1 px-6 py-4 rounded-xl border-2 border-slate-200 focus:border-primary focus:outline-none text-lg">
-                <button type="button" onclick="sendSubscriptionEmail()" class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-opacity-90 transition brew-shadow">
+                <button type="button" onclick="handleSubscription()" class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-opacity-90 transition brew-shadow">
                     Subscribe
                 </button>
             </div>
-            <p class="text-xs text-slate-400 mt-4 italic">Irving's fastest-growing business-casual newsletter for hosts and neighbors. Subscribe at irvingrentaltea@gmail.com </p>
+            <p class="text-xs text-slate-500 mt-4 leading-relaxed">
+                If the button doesn't work because the desktop version might fail, please email <a href="mailto:irvingrentaltea@gmail.com" class="text-accent font-bold hover:underline">irvingrentaltea@gmail.com</a> to subscribe.
+            </p>
         </div>
     </header>
 
@@ -158,7 +161,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Decorative Vector Overlay -->
             <div class="absolute -bottom-10 -right-10 opacity-10">
                 <svg width="300" height="300" viewBox="0 0 100 100" fill="white">
                     <path d="M10 10 H90 V90 H10 Z" fill="none" stroke="white" stroke-width="2"/>
@@ -176,36 +178,60 @@
             </div>
 
             <div class="space-y-6">
-                <!-- Timeline Item 1 -->
                 <div class="group flex flex-col md:flex-row gap-6 p-6 rounded-2xl hover:bg-neutral transition border-2 border-transparent hover:border-primary/10">
                     <div class="md:w-64">
                         <div class="text-accent font-black text-sm uppercase">Mailing Period</div>
                         <div class="font-display font-extrabold text-xl text-primary">The 52,000 Postcard Blitz</div>
                     </div>
                     <div class="flex-grow">
-                        <p class="text-slate-600 font-medium mb-1">Scheduled for the <span class="font-bold">first two weeks of June 2026</span>.</p>
+                        <p class="text-slate-600 font-medium mb-1">Scheduled for the <span class="font-bold text-slate-900">first two weeks of June 2026</span>.</p>
                         <p class="text-slate-600 text-sm">The city sends a mass mailing to every homeowner in Irving explaining the new registration/permit process.</p>
                     </div>
                 </div>
 
-                <!-- Timeline Item 2 -->
                 <div class="group flex flex-col md:flex-row gap-6 p-6 rounded-2xl hover:bg-neutral transition border-2 border-transparent hover:border-primary/10">
                     <div class="md:w-64">
                         <div class="text-accent font-black text-sm uppercase">Expected Vote</div>
                         <div class="font-display font-extrabold text-xl text-primary">Public Hearing Date</div>
                     </div>
                     <div class="flex-grow">
-                        <p class="text-slate-600 text-sm">Currently targeted for the <span class="font-bold">July 2026</span> Planning and Zoning Commission and City Council sessions. This is when the final "Special Use Permit" (CUP) requirement and the official code amendments for single-family residential zones are slated for a final vote.</p>
+                        <p class="text-slate-600 text-sm">Currently targeted for the <span class="font-bold text-slate-900">July 2026</span> Planning and Zoning Commission and City Council sessions. This is when the final "Special Use Permit" (CUP) requirement and the official code amendments for single-family residential zones are slated for a final vote.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <div id="success-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6">
+        <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-2xl relative z-10 modal-enter border-t-8 border-accent">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h3 class="font-display font-extrabold text-2xl text-primary mb-2">Almost there!</h3>
+                <p class="text-slate-600 mb-8">We've tried to open your email app. If it didn't open, just email us directly to finish your subscription.</p>
+                
+                <div class="bg-neutral p-4 rounded-xl flex items-center justify-between mb-6 border border-slate-200">
+                    <span id="email-text" class="font-bold text-primary text-sm">irvingrentaltea@gmail.com</span>
+                    <button onclick="copyToClipboard()" class="text-accent font-black text-xs uppercase hover:underline ml-4">Copy Email</button>
+                </div>
+                
+                <button onclick="closeModal()" class="w-full bg-primary text-white py-4 rounded-xl font-bold brew-shadow hover:bg-opacity-90 transition">
+                    Got it!
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function sendSubscriptionEmail() {
+        const TARGET_EMAIL = "irvingrentaltea@gmail.com";
+
+        function handleSubscription() {
             const emailInput = document.getElementById('subscriber-email');
-            const btn = event.currentTarget;
             const emailValue = emailInput.value.trim();
             
             if (!emailValue || !emailValue.includes('@')) {
@@ -217,43 +243,55 @@
                 return;
             }
 
-            const targetEmail = "angelica.martinez.ochoa@gmail.com";
+            // 1. Attempt to open mail app
             const subject = encodeURIComponent("Subscribe to The Irving Rental Tea");
-            const body = encodeURIComponent(`I would like to subscribe to the newsletter.\n\nSubscriber Email: ${emailValue}`);
-            const mailtoLink = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
-
-            // Visual feedback on button
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "Check Email App";
-            btn.classList.add('bg-green-600');
-
-            // Attempting to open mail client via multiple methods for maximum compatibility
+            const body = encodeURIComponent(`I would like to subscribe.\n\nEmail: ${emailValue}`);
+            const mailtoLink = `mailto:${TARGET_EMAIL}?subject=${subject}&body=${body}`;
+            
             try {
-                // Method 1: Hidden anchor (often bypassed iframe restrictions better)
                 const link = document.createElement('a');
                 link.href = mailtoLink;
                 link.target = "_blank";
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                
-                // Method 2: Standard location change as backup
-                setTimeout(() => {
-                    window.location.href = mailtoLink;
-                }, 100);
-            } catch (e) {
-                console.error("Mailto failed:", e);
-            }
+            } catch (e) { console.error("Mailto link failed."); }
 
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.classList.remove('bg-green-600');
-            }, 3000);
+            // 2. Always show the modal as confirmation and fallback
+            showModal();
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("The Irving Rental Tea: Navigation and mail logic active.");
+        function showModal() {
+            document.getElementById('success-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function copyToClipboard() {
+            const tempInput = document.createElement("input");
+            tempInput.value = TARGET_EMAIL;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            const copyBtn = event.currentTarget;
+            const originalText = copyBtn.innerText;
+            copyBtn.innerText = "COPIED!";
+            copyBtn.classList.add('text-green-600');
+            
+            setTimeout(() => {
+                copyBtn.innerText = originalText;
+                copyBtn.classList.remove('text-green-600');
+            }, 2000);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
         });
     </script>
 </body>
