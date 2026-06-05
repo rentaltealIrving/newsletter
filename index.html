@@ -1,51 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Vibe Check: Irving Tea Newsletter</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Montserrat & Inter -->
+    <title>Irving Tea — The Irving STR Lockdown & Tech Gold Rush</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#1E22AA',
+                        vibrantRed: '#FF5A5F',
+                        cream: '#F4F4F7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF;
-            color: #1F2937;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-        }
-        /* Morning Brew Inspired Solid Offset Shadow */
-        .brew-shadow {
-            box-shadow: 4px 4px 0px 0px #1E22AA;
-        }
-        .brew-shadow-hover:hover {
-            box-shadow: 6px 6px 0px 0px #1E22AA;
-            transform: translate(-2px, -2px);
-        }
-        /* Custom animation for logo steam */
         @keyframes steam {
-            0% { transform: translateY(0) scaleX(1); opacity: 0.5; }
-            50% { transform: translateY(-2px) scaleX(1.1); opacity: 1; }
-            100% { transform: translateY(0) scaleX(1); opacity: 0.5; }
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-2px) scale(1.05); opacity: 1; }
         }
         .animate-steam {
             animation: steam 2s ease-in-out infinite;
         }
+        .brew-shadow {
+            border: 2px solid #1E22AA;
+            box-shadow: 4px 4px 0px 0px #1E22AA;
+            transition: all 0.2s ease-in-out;
+        }
+        .brew-shadow:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #1E22AA;
+        }
+        .brew-shadow:active {
+            transform: translate(0px, 0px);
+            box-shadow: 2px 2px 0px 0px #1E22AA;
+        }
+        .brew-shadow-static {
+            border: 2px solid #1E22AA;
+            box-shadow: 4px 4px 0px 0px #1E22AA;
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-[#FFFFFF] text-gray-900 font-sans antialiased selection:bg-vibrantRed selection:text-white">
 
-    <!-- STICKY HEADER -->
-    <header class="sticky top-0 z-40 w-full border-b-4 border-[#1E22AA] bg-white px-4 py-3 sm:px-8">
-        <div class="mx-auto flex max-w-6xl items-center justify-between">
-            <!-- Logo & Brand -->
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-40 w-full bg-white border-b-4 border-navy py-3 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-3">
+                <!-- Exact SVG Logo requested -->
                 <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="hover:scale-105 transition-transform cursor-pointer">
                     <path d="M20 45 L50 15 L80 45 V85 H20 Z" fill="#1E22AA"/>
                     <rect x="35" y="55" width="30" height="18" rx="1.5" fill="white"/>
@@ -53,331 +68,518 @@
                     <path d="M80 58 C88 58 88 75 80 75" stroke="#1E22AA" stroke-width="5" stroke-linecap="round" fill="none"/>
                     <path d="M42 8 Q50 -2 58 8" stroke="#FF5A5F" stroke-width="3" stroke-linecap="round" class="animate-steam"/>
                 </svg>
-                <span class="text-2xl font-extrabold tracking-tight text-[#1E22AA]">Irving Tea</span>
+                <span class="font-display font-extrabold text-2xl tracking-tight text-navy">Irving Tea</span>
             </div>
-            <!-- Header Action -->
-            <a href="#subscribe" class="brew-shadow rounded-full border-2 border-[#1E22AA] bg-[#FF5A5F] px-5 py-1.5 text-sm font-bold text-white transition-all hover:bg-red-500 active:translate-y-0.5">
-                Subscribe
-            </a>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section id="subscribe" class="bg-[#F4F4F7] px-4 py-12 text-center sm:px-8 sm:py-16 border-b border-gray-200">
-        <div class="mx-auto max-w-3xl">
-            <span class="inline-block rounded-full bg-[#1E22AA] px-4 py-1 text-xs font-bold uppercase tracking-wider text-white mb-4">
-                June 5, 2026
+    <!-- Main Hero Section -->
+    <section id="subscribe" class="bg-cream py-16 px-4 border-b-2 border-navy text-center">
+        <div class="max-w-3xl mx-auto">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-navy text-white uppercase tracking-wider mb-4">
+                <span class="w-2 h-2 rounded-full bg-vibrantRed animate-ping"></span>
+                Friday, June 5, 2026
             </span>
-            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-5xl mb-4 leading-tight">
-                Your Morning Dose of Local Power, Zoning Wars, and Spicy Municipal Drama.
+            <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-navy leading-none mb-6">
+                THE IRVING <span class="text-vibrantRed">STR LOCKDOWN</span> & TECH GOLD RUSH
             </h1>
-            <p class="text-base text-gray-600 sm:text-lg mb-8 max-w-xl mx-auto">
-                Get the breakdown on Irving's real estate lockdowns, driverless tech chaos, and the cash backing your local council.
+            <p class="text-lg md:text-xl text-gray-700 font-medium max-w-2xl mx-auto mb-8">
+                Your high-energy, business-casual breakdown of Irving City Hall's regulatory earthquake and the local battle lines over AI grid power.
             </p>
-            
-            <!-- Subscription Form Box -->
-            <form id="subForm" class="mx-auto max-w-md bg-white p-4 rounded-3xl border-2 border-[#1E22AA] brew-shadow flex flex-col sm:flex-row gap-2">
-                <input type="email" id="emailInput" required placeholder="Enter your email address" class="w-full flex-1 rounded-2xl border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#1E22AA] focus:outline-none focus:ring-2 focus:ring-[#1E22AA]/20" />
-                <button type="submit" class="w-full sm:w-auto whitespace-nowrap rounded-2xl bg-[#FF5A5F] px-6 py-3 font-bold text-white transition-colors hover:bg-red-500 focus:outline-none">
-                    Join Free
+
+            <!-- Subscribe Input Block -->
+            <form id="subscribe-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto justify-center items-stretch">
+                <input 
+                    type="email" 
+                    id="subscriber-email"
+                    placeholder="Enter your email address" 
+                    required 
+                    class="px-4 py-3.5 rounded-xl border-2 border-navy text-base focus:outline-none focus:ring-2 focus:ring-vibrantRed font-medium flex-grow"
+                />
+                <button type="submit" class="bg-vibrantRed text-white px-6 py-3.5 rounded-xl font-bold brew-shadow whitespace-nowrap text-base">
+                    Get The Tea ☕
                 </button>
             </form>
+            <p class="text-xs text-gray-500 mt-3">Join 12,000+ local property hosts, planners, and civic advocates reading weekly.</p>
         </div>
     </section>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="mx-auto max-w-6xl px-4 py-12 sm:px-8">
-        
-        <!-- TOP BANNER TITLE FROM DOC -->
-        <div class="mb-12 border-b-4 border-black pb-4 text-center sm:text-left">
-            <h2 class="text-2xl font-extrabold uppercase tracking-tight text-[#1E22AA] sm:text-4xl">
-                📢 THE VIBE CHECK: THE STR LOCKDOWN & THE TESLA DRAMA
-            </h2>
-            <p class="mt-2 text-sm font-semibold text-gray-500 uppercase tracking-widest">Irving City Council Legislative Briefing</p>
-        </div>
-
-        <!-- 2-COLUMN RESPONSIVE LAYOUT -->
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+    <!-- Content Area: Responsive Grid Layout -->
+    <main class="max-w-6xl mx-auto py-12 px-4 md:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            <!-- LEFT COLUMN: MAIN ARTICLES (2/3 Width on Desktop) -->
-            <div class="lg:col-span-2 space-y-12">
+            <!-- Left Side: Main Editorial Stream (8 cols) -->
+            <div class="lg:col-span-8 space-y-12">
                 
-                <!-- SECTION 1: Regulatory Chaos -->
-                <article class="space-y-4">
-                    <p class="text-lg leading-relaxed text-gray-800">
-                        Irving City Council just dropped a double-whammy of regulatory chaos. First, they officially amended Chapter 11, putting a total lockdown on single-family short-term rentals (STRs) to completely crush the "uberization" of residential neighborhoods.
-                    </p>
-                    <blockquote class="border-l-4 border-[#FF5A5F] bg-[#F4F4F7] p-4 italic text-gray-700 rounded-r-xl">
-                        "If you were trying to run a sneaky room-by-room rental empire, the city just said: ‘Yeah, that’s gonna be a no from us, dawg.’"
-                    </blockquote>
-                    <p class="text-lg leading-relaxed text-gray-800">
-                        Meanwhile, the "Future Land Use" debate got spicy. Tesla showed up trying to slide into a business office zone at Horizon and Royal to park, dispatch, and fix an autonomous vehicle fleet. 
-                    </p>
-                    <p class="text-lg leading-relaxed text-gray-800">
-                        Code Enforcement and City Planning recommended an absolute <strong class="text-[#FF5A5F]">DENIAL</strong>. The plot twist? Council members are basically split between wanting shiny new tech and panicking over driverless cars bricking it in puddles.
-                    </p>
-                </article>
-
-                <!-- SECTION 2: Key Changes Table -->
-                <section class="space-y-4">
+                <!-- Editorial Introduction & Vibe Check -->
+                <article id="vibe-check" class="space-y-6">
                     <div class="flex items-center space-x-2">
-                        <span class="text-2xl">📊</span>
-                        <h3 class="text-xl font-bold text-gray-900 uppercase tracking-tight">KEY CHANGES: THE NEW STR RULES</h3>
+                        <span class="text-3xl">🚨</span>
+                        <h2 class="font-display font-black text-2xl md:text-3xl text-navy uppercase tracking-tight">
+                            The Irving STR Lockdown: What Just Went Down
+                        </h2>
                     </div>
                     
-                    <div class="overflow-x-auto rounded-3xl border-2 border-[#1E22AA] brew-shadow">
-                        <table class="w-full text-left border-collapse bg-white">
+                    <div class="p-5 md:p-6 bg-cream rounded-3xl brew-shadow-static">
+                        <div class="flex items-center space-x-2 text-vibrantRed font-bold uppercase tracking-wider text-xs mb-3">
+                            <span>⚡</span> <span>The Vibe Check</span>
+                        </div>
+                        <p class="text-base text-gray-800 leading-relaxed font-medium">
+                            Alright y’all, grab your iced lattes and sit down, because Irving City Hall just dropped a massive bomb on the short-term rental (STR) ecosystem. If you’ve been coasting by running an unregulated Airbnb or VRBO in Irving, consider this your official wake-up call. The city passed <strong>Ordinance ORD-2026-11269</strong>, and it completely rewrites the playbook.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-gray-700 leading-relaxed text-base">
+                        <p>
+                            The biggest bombshell? The absolute crackdown on neighborhood vibes. Irving is officially clamping down on single-family zone rentals with aggressive parking minimums and a strict structural layout mandate. They’re treating STRs less like casual side-hustles and more like strict commercial hotels, complete with heavy structural registration obligations. The wild-west days of unmonitored local rentals are officially over.
+                        </p>
+                        <p>
+                            But wait, it isn't just vacation rentals getting hit with the regulatory hammer—the tech bros are officially meeting local resistance. Irving is experiencing a massive tech gold rush with heavy AI data center expansions (like the newly approved CoreSite and Edged US multi-megawatt facilities) and Tesla attempting to plant down a massive 35,000-square-foot Cybercab and Robotaxi fleet hub right on West Royal Lane.
+                        </p>
+                        <div class="border-l-4 border-vibrantRed pl-4 my-6 italic text-navy font-semibold text-lg">
+                            "Irving is officially drawing a line in the sand: tech capital is welcome, but only on the city's terms."
+                        </div>
+                        <p>
+                            However, local planners just threw up a major stop sign, pushing back on the tech giants due to grid strain and battery safety concerns. Local governance is pulling the emergency brakes until infrastructure issues can be resolved.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Interactive Checklist Section -->
+                <section id="checklist" class="border-4 border-navy rounded-3xl p-6 md:p-8 bg-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-navy text-white px-4 py-1.5 rounded-bl-xl font-bold text-xs uppercase tracking-wider">
+                        Compliance Checklist
+                    </div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <span class="text-3xl">🛠️</span>
+                        <h2 class="font-display font-black text-2xl text-navy uppercase tracking-tight">
+                            The "Don't Get Shut Down" Checklist
+                        </h2>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6">
+                        If you want to keep your booking calendar alive and avoid getting hit with massive fines, you need to handle these compliance steps immediately. Tap to check off completed items!
+                    </p>
+
+                    <div class="space-y-4">
+                        <!-- Step 1 -->
+                        <label class="flex items-start p-4 rounded-2xl bg-cream hover:bg-gray-100 transition-colors cursor-pointer border border-transparent hover:border-navy">
+                            <input type="checkbox" class="w-5 h-5 rounded border-2 border-navy text-vibrantRed focus:ring-vibrantRed mt-1 mr-4 flex-shrink-0" />
+                            <div>
+                                <span class="font-bold text-navy block text-base">Step 1: Get Legit & Register</span>
+                                <span class="text-sm text-gray-700">Submit an official application to the city including your full personal or corporate identification and a dedicated emergency local contact. No certificate = immediate shutdown.</span>
+                            </div>
+                        </label>
+
+                        <!-- Step 2 -->
+                        <label class="flex items-start p-4 rounded-2xl bg-cream hover:bg-gray-100 transition-colors cursor-pointer border border-transparent hover:border-navy">
+                            <input type="checkbox" class="w-5 h-5 rounded border-2 border-navy text-vibrantRed focus:ring-vibrantRed mt-1 mr-4 flex-shrink-0" />
+                            <div>
+                                <span class="font-bold text-navy block text-base">Step 2: Map Out the Parking</span>
+                                <span class="text-sm text-gray-700">For single-family setups, you must submit a formal site map proving you have dedicated on-site parking spaces adhering strictly to the new bedroom-to-car ratio. No more overflowing neighborhood curbs.</span>
+                            </div>
+                        </label>
+
+                        <!-- Step 3 -->
+                        <label class="flex items-start p-4 rounded-2xl bg-cream hover:bg-gray-100 transition-colors cursor-pointer border border-transparent hover:border-navy">
+                            <input type="checkbox" class="w-5 h-5 rounded border-2 border-navy text-vibrantRed focus:ring-vibrantRed mt-1 mr-4 flex-shrink-0" />
+                            <div>
+                                <span class="font-bold text-navy block text-base">Step 3: Mandate an On-Site Adult</span>
+                                <span class="text-sm text-gray-700">The city now requires a legally responsible adult to be physically present on the premises at all times during an active lodging timeline to police noise and safety.</span>
+                            </div>
+                        </label>
+
+                        <!-- Step 4 -->
+                        <label class="flex items-start p-4 rounded-2xl bg-cream hover:bg-gray-100 transition-colors cursor-pointer border border-transparent hover:border-navy">
+                            <input type="checkbox" class="w-5 h-5 rounded border-2 border-navy text-vibrantRed focus:ring-vibrantRed mt-1 mr-4 flex-shrink-0" />
+                            <div>
+                                <span class="font-bold text-navy block text-base">Step 4: Update Your Floor Plans</span>
+                                <span class="text-sm text-gray-700">You must submit an official architectural floor plan outlining the exact property layout and maximum occupancy limits to satisfy city building standards.</span>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Comparison Grid Section -->
+                <section id="comparison" class="space-y-6">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-2xl">📊</span>
+                        <h2 class="font-display font-black text-xl md:text-2xl text-navy uppercase tracking-tight">
+                            Key Changes At A Glance
+                        </h2>
+                    </div>
+
+                    <!-- Responsive Table / Card Setups -->
+                    <div class="overflow-x-auto border-2 border-navy rounded-2xl shadow-[4px_4px_0px_0px_#1E22AA]">
+                        <table class="w-full text-left border-collapse min-w-[600px]">
                             <thead>
-                                <tr class="bg-[#1E22AA] text-white">
-                                    <th class="p-4 font-bold uppercase text-xs tracking-wider">Feature</th>
-                                    <th class="p-4 font-bold uppercase text-xs tracking-wider">The Old Vibe</th>
-                                    <th class="p-4 font-bold uppercase text-xs tracking-wider">The New Rules (Amended Chapter 11)</th>
+                                <tr class="bg-navy text-white text-xs uppercase tracking-wider font-bold">
+                                    <th class="p-4 border-r border-navy/20">Rule Category</th>
+                                    <th class="p-4 border-r border-navy/20">Previous Standard</th>
+                                    <th class="p-4">New Ordinance Requirement (ORD-2026-11269) / Tech Mandates</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200 text-sm text-gray-700">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-4 font-bold text-gray-900">Lease Limits</td>
-                                    <td class="p-4">Rent out individual rooms like a tech-bro boarding house.</td>
-                                    <td class="p-4 bg-red-50/50 font-medium text-gray-900">One lodging agreement per property. Multiple active links for one address are banned.</td>
+                            <tbody class="divide-y divide-navy/10 text-sm">
+                                <tr class="hover:bg-cream/50 transition-colors">
+                                    <td class="p-4 font-bold text-navy border-r border-navy/10">STR Registration</td>
+                                    <td class="p-4 text-gray-600 border-r border-navy/10">Minimal oversight / loosely tracked</td>
+                                    <td class="p-4 font-medium text-gray-900 bg-vibrantRed/5">Mandatory Certificate of Registration + Annual Renewal</td>
                                 </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-4 font-bold text-gray-900">The Parking Situation</td>
-                                    <td class="p-4">"Just park wherever, the street is fine."</td>
-                                    <td class="p-4 bg-red-50/50 font-medium text-gray-900">Minimum 4 spaces OR 1 per bedroom. Driveway parking must be used before touching the street.</td>
+                                <tr class="hover:bg-cream/50 transition-colors">
+                                    <td class="p-4 font-bold text-navy border-r border-navy/10">STR Parking Minimums</td>
+                                    <td class="p-4 text-gray-600 border-r border-navy/10">Standard street/driveway usage</td>
+                                    <td class="p-4 font-medium text-gray-900 bg-vibrantRed/5">Regulated off-street parking matched strictly to bedrooms</td>
                                 </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-4 font-bold text-gray-900">Neighborhood Saturation</td>
-                                    <td class="p-4">Infinite STRs on one block? Pure chaos.</td>
-                                    <td class="p-4 bg-red-50/50 font-medium text-gray-900">10% Cap per block face. Only 2 or 3 STRs max per typical street side.</td>
+                                <tr class="hover:bg-cream/50 transition-colors">
+                                    <td class="p-4 font-bold text-navy border-r border-navy/10">Data Center Approvals</td>
+                                    <td class="p-4 text-gray-600 border-r border-navy/10">Allowed by right in industrial zones</td>
+                                    <td class="p-4 font-medium text-gray-900 bg-navy/5">New Conditional Use Permits required; air-cooled & water-neutral mandates only</td>
                                 </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-4 font-bold text-gray-900">Fire Code Lockdown</td>
-                                    <td class="p-4">Standard smoke alarms and vibes.</td>
-                                    <td class="p-4 bg-red-50/50 font-medium text-gray-900">Floor plans required, mandatory smoke detectors in all bedrooms, plus a 5lb ABC fire extinguisher.</td>
+                                <tr class="hover:bg-cream/50 transition-colors">
+                                    <td class="p-4 font-bold text-navy border-r border-navy/10">Autonomous EV Fleets</td>
+                                    <td class="p-4 text-gray-600 border-r border-navy/10">Standard commercial zoning</td>
+                                    <td class="p-4 font-medium text-gray-900 bg-navy/5">Heavy scrutiny over battery storage risks and strict zoning alignment roadblocks</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
 
-                <!-- SECTION 3: The Don't Get Shut Down Checklist -->
-                <section class="rounded-3xl border-2 border-black bg-[#F4F4F7] p-6 sm:p-8 brew-shadow">
-                    <div class="mb-4 flex items-center space-x-2">
-                        <span class="text-2xl">🛑</span>
-                        <h3 class="text-xl font-bold text-gray-900 uppercase tracking-tight">THE "DON'T GET SHUT DOWN" CHECKLIST</h3>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-6">If you want to keep your STR operational, you need to step up your compliance game immediately:</p>
-                    
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1E22AA] text-xs font-bold text-white mt-1">1</span>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Purge Your Rental Listings</h4>
-                                <p class="text-sm text-gray-600">Scrub Airbnb and Vrbo. If you have separate links renting out individual rooms in a single-family home, delete them now. One house = one single lease entity.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1E22AA] text-xs font-bold text-white mt-1">2</span>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Update Your House Rules Verbatim</h4>
-                                <p class="text-sm text-gray-600">You are now legally required to post a rule on your online ads AND physically inside the property telling guests they must use the driveway before parking on the street.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1E22AA] text-xs font-bold text-white mt-1">3</span>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Redraw Your Site & Floor Plans</h4>
-                                <p class="text-sm text-gray-600">Get ready to submit architectural layouts to Code Enforcement proving you aren't overcrowding and that your driveway actually fits at least 4 cars.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1E22AA] text-xs font-bold text-white mt-1">4</span>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Go to Home Depot</h4>
-                                <p class="text-sm text-gray-600">Buy a 5-pound ABC fire extinguisher, smoke alarms for every single bedroom, and a carbon monoxide detector for the sleeping areas if you use gas.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </section>
-
-                <!-- SECTION 4: Neighbor Watch -->
-                <section class="space-y-4">
+                <!-- Public Dialogue: The Neighbor Watch -->
+                <section id="neighbor-watch" class="space-y-6">
                     <div class="flex items-center space-x-2">
-                        <span class="text-2xl">👀</span>
-                        <h3 class="text-xl font-bold text-gray-900 uppercase tracking-tight">THE NEIGHBOR WATCH</h3>
+                        <span class="text-3xl">👀</span>
+                        <h2 class="font-display font-black text-2xl text-navy uppercase tracking-tight">
+                            The Neighbor Watch
+                        </h2>
                     </div>
-                    <p class="text-lg leading-relaxed text-gray-800">
-                        The public sentiment is loud, clear, and utterly exhausted. Neighbors are flooding council phone lines with complaints about local homes being carved up into "pad splits" and unmonitored rooming houses. 
+                    <p class="text-base text-gray-700">
+                        The public sentiment during the open council hearings has been nothing short of pure reality-TV drama. Civic alignment has split neatly down middle lines over neighborhood preservation and industrial expansion.
                     </p>
-                    <p class="text-lg leading-relaxed text-gray-800">
-                        The council is feeling the heat. Outgoing Mayor Rick Stofer noted that neighbor complaints are ramping up significantly because operators are taking advantage of residential areas. Public works and local neighborhood associations are fully on board to pull down the red tape for corporate hubs, but when it comes to residential blocks, the community is demanding peace, quiet, and zero weird parking situations.
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Opinion 1: The Neighborhood Groups -->
+                        <div class="bg-cream rounded-3xl p-6 border-2 border-navy shadow-[4px_4px_0px_0px_#1E22AA] relative">
+                            <span class="absolute -top-3 left-6 px-3 py-1 rounded-full text-xs font-bold bg-navy text-white uppercase tracking-wider">
+                                Neighborhood Coalition
+                            </span>
+                            <p class="text-sm text-gray-800 font-medium italic mt-2 leading-relaxed">
+                                "We are cheering for these updates. The weekend rages, continuous trash cans, and total blockages of public neighborhood street parking have turned our quiet residential suburbs into unregulated hotels."
+                            </p>
+                            <div class="mt-4 flex items-center space-x-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Status: Support STR Lockdowns</span>
+                            </div>
+                        </div>
+
+                        <!-- Opinion 2: The Local Hosts & Tech Skeptics -->
+                        <div class="bg-cream rounded-3xl p-6 border-2 border-navy shadow-[4px_4px_0px_0px_#1E22AA] relative">
+                            <span class="absolute -top-3 left-6 px-3 py-1 rounded-full text-xs font-bold bg-vibrantRed text-white uppercase tracking-wider">
+                                Local Hosts & Residents
+                            </span>
+                            <p class="text-sm text-gray-800 font-medium italic mt-2 leading-relaxed">
+                                "These complex layout maps and strict parking regulations are basically a stealth ban designed to price everyday local property owners out. Furthermore, massive AI data centers wreck havoc on our local grid and water."
+                            </p>
+                            <div class="mt-4 flex items-center space-x-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-vibrantRed"></span>
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Status: Highly Anxious</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Political Scorecard: Follow the Money -->
+                <section id="political-landscape" class="space-y-6">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-3xl">💵</span>
+                        <h2 class="font-display font-black text-2xl text-navy uppercase tracking-tight">
+                            Follow the Money (And The Council Debates)
+                        </h2>
+                    </div>
+                    <p class="text-base text-gray-700">
+                        This is where the plot thickens. The political battle lines over neighborhood safety versus massive commercial tech and property rights are playing out directly in the upcoming local elections.
                     </p>
+
+                    <!-- Challenger / Incumbent Direct Focus -->
+                    <div class="bg-[#FFFFFF] border-4 border-navy rounded-3xl p-6 shadow-[6px_6px_0px_0px_#1E22AA]">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-navy/10 pb-4 mb-4 gap-2">
+                            <div>
+                                <span class="text-xs font-black text-vibrantRed uppercase tracking-widest block">HIGH STAKES CONTENDER</span>
+                                <h3 class="font-display font-black text-xl text-navy">Kejal Patel</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-navy text-white">District 3 Runoff Challenger</span>
+                        </div>
+                        <blockquote class="text-base font-semibold text-gray-800 italic bg-cream p-4 rounded-xl border-l-4 border-vibrantRed">
+                            "Neighborhood safety isn't just a talking point for me—it is my absolute top priority. That means taking a firm stance on short-term rentals that bring disruption to our quiet neighborhoods."
+                        </blockquote>
+                    </div>
+
+                    <!-- Grid of Dais Council Members -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- David Pfaff -->
+                        <div class="bg-cream rounded-3xl p-6 border-2 border-navy flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-3">
+                                    <h4 class="font-display font-bold text-lg text-navy">David Pfaff</h4>
+                                    <span class="text-xs font-bold text-gray-500 uppercase">Place 2</span>
+                                </div>
+                                <p class="text-sm text-gray-700 mb-4">
+                                    Strongly backed the ordinance, emphasizing that commercial enterprises shouldn't erode residential single-family neighborhoods.
+                                </p>
+                            </div>
+                            <div class="border-t border-navy/10 pt-3">
+                                <span class="block text-xs font-bold text-navy uppercase">Campaign Finance:</span>
+                                <span class="text-xs text-gray-600">Self-funded ($0 outside checks). However, <strong>Lone Star Action Fund</strong> dropped $31k+ on roadside signs/text alerts to back him.</span>
+                            </div>
+                        </div>
+
+                        <!-- John Bloch & Adam Muller -->
+                        <div class="bg-cream rounded-3xl p-6 border-2 border-navy flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-3">
+                                    <h4 class="font-display font-bold text-lg text-navy">John Bloch &amp; Adam Muller</h4>
+                                    <span class="text-xs font-bold text-gray-500 uppercase">Place 1 &amp; Place 7</span>
+                                </div>
+                                <p class="text-sm text-gray-700 mb-4">
+                                    Pushed for clear, structured frameworks to guarantee code enforcement actually has teeth, rather than just passing empty rules.
+                                </p>
+                            </div>
+                            <div class="border-t border-navy/10 pt-3">
+                                <span class="block text-xs font-bold text-navy uppercase">Campaign Finance:</span>
+                                <span class="text-xs text-gray-600">Establishment favorites backed by the <strong>Families for Irving PAC</strong> with over $5,000+ each in campaign cash.</span>
+                            </div>
+                        </div>
+
+                        <!-- Mayor Rick Stopfer -->
+                        <div class="bg-cream rounded-3xl p-6 border-2 border-navy flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-3">
+                                    <h4 class="font-display font-bold text-lg text-navy">Mayor Rick Stopfer</h4>
+                                    <span class="text-xs font-bold text-gray-500 uppercase">Mayor</span>
+                                </div>
+                                <p class="text-sm text-gray-700 mb-4">
+                                    Took a pro-business, big-picture stance. Threw weight behind major data center rollouts, defending them as critical for Irving's future tax base.
+                                </p>
+                            </div>
+                            <div class="border-t border-navy/10 pt-3">
+                                <span class="block text-xs font-bold text-navy uppercase">Campaign Finance:</span>
+                                <span class="text-xs text-gray-600">Supported by a broad base of civic leaders, business owners, developers. Heavily endorsed by the <strong>Families for Irving PAC</strong>.</span>
+                            </div>
+                        </div>
+
+                        <!-- Abdul Khabeer -->
+                        <div class="bg-cream rounded-3xl p-6 border-2 border-navy flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-3">
+                                    <h4 class="font-display font-bold text-lg text-navy">Abdul Khabeer</h4>
+                                    <span class="text-xs font-bold text-gray-500 uppercase">Place 3 Incumbent</span>
+                                </div>
+                                <p class="text-sm text-gray-700 mb-4">
+                                    Took an institutional approach, questioning how the enforcement budget will scale to monitor these regulatory rules 24/7. Fighting for District 3 runoff against Patel.
+                                </p>
+                            </div>
+                            <div class="border-t border-navy/10 pt-3">
+                                <span class="block text-xs font-bold text-navy uppercase">Campaign Finance:</span>
+                                <span class="text-xs text-gray-600">Traditional community funding via direct members, small business groups, and faith-based coalitions. $0 in PAC backing.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Absolute Nerds Section (Video Embed simulation) -->
+                <section id="nerds-stream" class="bg-navy text-white rounded-3xl p-6 md:p-8 brew-shadow-static relative overflow-hidden">
+                    <!-- Tech overlay design -->
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/5 rounded-full pointer-events-none"></div>
+                    
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-3xl">🤓</span>
+                        <h2 class="font-display font-black text-xl md:text-2xl text-white uppercase tracking-tight">
+                            For the Absolute Nerds — Stream the Whole Session
+                        </h2>
+                    </div>
+                    <p class="text-sm text-white/90 mb-6 leading-relaxed">
+                        Want to watch the actual policy-making drama unfold frame-by-frame? Pull up the full Planning and Zoning Public Hearing June 1, 2026 to see our local representatives debate the fine print of these housing regulations.
+                    </p>
+
+                    <!-- Video Placeholder Card -->
+                    <div class="relative rounded-2xl overflow-hidden border-2 border-white/20 bg-black/40 p-4 flex flex-col justify-end min-h-[220px]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center">
+                            <!-- Play Button -->
+                            <a href="https://www.cityofirving.org" target="_blank" class="w-16 h-16 rounded-full bg-vibrantRed text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform focus:outline-none">
+                                <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="z-10 text-xs text-white/80 uppercase font-mono tracking-widest flex justify-between items-center w-full">
+                            <span>June 1, 2026 Public Hearing Archive</span>
+                            <span class="px-2 py-0.5 rounded bg-vibrantRed text-[10px] text-white font-bold animate-pulse">RECORDED</span>
+                        </div>
+                    </div>
                 </section>
             </div>
 
-            <!-- RIGHT COLUMN: SIDEBAR (1/3 Width on Desktop) -->
-            <div class="space-y-8">
+            <!-- Right Side: Sidebar (4 cols) -->
+            <div class="lg:col-span-4 space-y-8">
                 
-                <!-- CALENDAR MODULE -->
-                <div class="rounded-3xl border-2 border-[#1E22AA] p-6 brew-shadow bg-white">
-                    <div class="mb-4 flex items-center space-x-2 border-b-2 border-gray-100 pb-3">
-                        <span class="text-xl">📆</span>
-                        <h3 class="text-lg font-bold text-gray-900 uppercase tracking-tight">UPCOMING DATES</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="border-l-4 border-[#FF5A5F] pl-3">
-                            <span class="block text-xs font-bold uppercase text-[#FF5A5F]">Late May / Early June 2026</span>
-                            <p class="text-sm text-gray-700 font-medium">30-day "cease and desist" clock runs out for first batch of illegal rooming houses busted.</p>
-                        </div>
-                        <div class="border-l-4 border-gray-300 pl-3">
-                            <span class="block text-xs font-bold uppercase text-gray-500">June 11, 2026</span>
-                            <p class="text-sm text-gray-700 font-medium">Postponed Tesla Comprehensive Land Use and Zoning hearing. <span class="text-xs text-gray-500 font-normal block mt-0.5">(Public safety chiefs pushing for 90 days delay to study driverless car felony-stops).</span></p>
-                        </div>
-                        <div class="border-l-4 border-gray-300 pl-3">
-                            <span class="block text-xs font-bold uppercase text-gray-500">July 2026</span>
-                            <p class="text-sm text-gray-700 font-medium">UDC zoning amendment drops, requiring strict Conditional Use Permit (CUP) for single-family STRs.</p>
-                        </div>
-                        <div class="border-l-4 border-gray-300 pl-3">
-                            <span class="block text-xs font-bold uppercase text-gray-500">September 2026</span>
-                            <p class="text-sm text-gray-700 font-medium">Final Chapter 8 update goes live, marrying new inspection fees and CUP rules into enforceable law.</p>
-                        </div>
-                    </div>
+                <!-- Quick Ad/Brief Box -->
+                <div class="border-4 border-navy rounded-3xl p-6 bg-cream shadow-[4px_4px_0px_0px_#1E22AA]">
+                    <h3 class="font-display font-black text-lg text-navy uppercase mb-3">☕ What is Irving Tea?</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">
+                        We deliver hyper-curated local governance, commercial real estate drama, and tech boom insights right to your inbox. Pure facts, clean visuals, and zero corporate fluff. This newsletter is not sponsored by any PAC or organization. It has been generated by a curated reading of city council meetings, commission work sessions, and public hearings, all made by Gemini. You can request the entire prompt if you want full transparency. No newspaper or media outlet will give you "their prompt" aka "their agenda", we don't have one, thus we share it with you.
+                    </p>
                 </div>
 
-                <!-- FOLLOW THE MONEY MODULE -->
-                <div class="rounded-3xl border-2 border-black p-6 brew-shadow bg-[#F4F4F7]">
-                    <div class="mb-4 flex items-center space-x-2 border-b-2 border-black pb-3">
-                        <span class="text-xl">💰</span>
-                        <h3 class="text-lg font-bold text-gray-900 uppercase tracking-tight">FOLLOW THE MONEY</h3>
+                <!-- Calendar Checklist Widget -->
+                <div class="border-2 border-navy rounded-3xl p-6 bg-white shadow-[4px_4px_0px_0px_#1E22AA]">
+                    <div class="flex items-center space-x-2 mb-4 pb-3 border-b-2 border-navy/10">
+                        <span class="text-xl">📅</span>
+                        <h3 class="font-display font-black text-lg text-navy uppercase">The Calendar</h3>
                     </div>
-                    <p class="text-xs text-gray-600 mb-4">The receipts for local politicians drawing the lines on zoning wars:</p>
                     
-                    <div class="space-y-4 division-y division-gray-200">
-                        <div>
-                            <h4 class="text-sm font-bold text-gray-900">CM David Pfaff (Place 2)</h4>
-                            <p class="text-xs text-gray-600 mt-1">
-                                Pressed Code Enforcement on zoning loopholes. Self-funded campaign, accepted <strong>$0 from Families for Irving PAC</strong>, heavily boosted by <strong>~$31,000 from Lone Star Action Fund</strong>.
-                            </p>
+                    <div class="space-y-6">
+                        <!-- Date 1 -->
+                        <div class="relative pl-6 border-l-2 border-vibrantRed">
+                            <div class="absolute -left-[6px] top-1 w-2.5 h-2.5 rounded-full bg-vibrantRed"></div>
+                            <span class="block text-xs font-black text-vibrantRed uppercase tracking-wider mb-0.5">June 13, 2026</span>
+                            <span class="font-bold text-navy text-sm block">District 3 Runoff Election Day</span>
+                            <p class="text-xs text-gray-600 mt-1">Kejal Patel goes head-to-head with Place 3 Incumbent Abdul Khabeer.</p>
                         </div>
-                        <div class="pt-3 border-t border-gray-300">
-                            <h4 class="text-sm font-bold text-gray-900">CM Mark Cronenwett (Place 5 / Pro Tem)</h4>
-                            <p class="text-xs text-gray-600 mt-1">
-                                Fiercely protective of residential integrity against bad-actor LLC evasion tactics. Strongly Backed funding from the <strong>Families for Irving PAC</strong> and <strong>$0 from Lone Star</strong>.
-                            </p>
-                        </div>
-                        <div class="pt-3 border-t border-gray-300">
-                            <h4 class="text-sm font-bold text-gray-900">Mayor-Elect Al Zapanta</h4>
-                            <p class="text-xs text-gray-600 mt-1">
-                                Demanded "teeth" in new ordinances, pushing for heavy fines and permit revocations over simple warnings. Fully <strong>Supported/Endorsed by Families for Irving PAC</strong>.
-                            </p>
+
+                        <!-- Date 2 -->
+                        <div class="relative pl-6 border-l-2 border-navy">
+                            <div class="absolute -left-[6px] top-1 w-2.5 h-2.5 rounded-full bg-navy"></div>
+                            <span class="block text-xs font-black text-navy uppercase tracking-wider mb-0.5">July 2026</span>
+                            <span class="font-bold text-navy text-sm block">Irving City Council Sessions</span>
+                            <p class="text-xs text-gray-600 mt-1">Finalizing code enforcement budgets, capping data center height limits at 75 feet, and structuring zoning fine frameworks.</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- VIDEO LINKS MODULE -->
-                <div class="rounded-3xl border-2 border-[#1E22AA] p-6 bg-white text-center">
-                    <span class="text-3xl block mb-2">🤓</span>
-                    <h3 class="text-base font-bold text-gray-900 uppercase tracking-tight mb-2">STREAM THE SESSION</h3>
-                    <p class="text-xs text-gray-600 mb-4">Want to see safety chiefs discuss how to pull over a steering-wheel-less Tesla? Grab your popcorn:</p>
-                    <div class="space-y-2">
-                        <a href="#" class="block w-full rounded-xl border border-gray-300 py-2 text-xs font-bold text-gray-700 hover:bg-gray-50 transition-colors">
-                            🎥 May 7 City Council Work Session
-                        </a>
-                        <a href="#" class="block w-full rounded-xl border border-gray-300 py-2 text-xs font-bold text-gray-700 hover:bg-gray-50 transition-colors">
-                            🎥 April 16 City Council Regular Meeting
-                        </a>
-                    </div>
-                </div>
-
             </div>
+            
         </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 py-12 px-4 border-t-8 border-[#1E22AA] text-center text-xs mt-12">
-        <div class="mx-auto max-w-6xl space-y-4">
-            <p class="font-bold text-white text-sm">Irving Tea © 2026</p>
-            <p class="max-w-md mx-auto">This newsletter platform utilizes public domain resources, Council records, and independent municipal analysis to keep the community informed.</p>
+    <!-- Footer -->
+    <footer class="bg-cream border-t-4 border-navy py-12 px-4 mt-16 text-center">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="flex justify-center items-center space-x-3">
+                <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 45 L50 15 L80 45 V85 H20 Z" fill="#1E22AA"/>
+                    <rect x="35" y="55" width="30" height="18" rx="1.5" fill="white"/>
+                    <path d="M35 55 L50 64 L65 55" stroke="#1E22AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M80 58 C88 58 88 75 80 75" stroke="#1E22AA" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M42 8 Q50 -2 58 8" stroke="#FF5A5F" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <span class="font-display font-extrabold text-xl text-navy">Irving Tea</span>
+            </div>
+            <p class="text-sm text-gray-600 max-w-md mx-auto">
+                Keep up with the fast-moving policy ecosystem. Subscribe by clicking below, or send an email directly to <a href="mailto:irvingrentaltea@gmail.com" class="text-vibrantRed font-bold hover:underline">irvingrentaltea@gmail.com</a>.
+            </p>
+            <div>
+                <a href="mailto:irvingrentaltea@gmail.com?subject=Subscribe%20to%20Irving%20Tea&body=Please%20subscribe%20me%20to%20the%20Irving%20Tea%20newsletter." class="inline-block bg-navy text-white font-bold px-6 py-3 rounded-xl brew-shadow">
+                    Subscribe Via Email App ✉️
+                </a>
+            </div>
+            <p class="text-xs text-gray-500 pt-6 border-t border-navy/10">
+                &copy; 2026 Irving Tea. All rights reserved. Deliberated in Irving, Texas.
+            </p>
         </div>
     </footer>
 
-    <!-- SUCCESS MODAL POPUP -->
-    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="bg-white rounded-3xl border-4 border-[#1E22AA] brew-shadow max-w-sm w-full p-6 text-center transform scale-95 transition-transform duration-300 relative">
-            <span class="text-4xl block mb-3">☕️</span>
-            <h3 class="text-xl font-extrabold text-[#1E22AA] mb-2">You're on the list!</h3>
-            <p class="text-sm text-gray-600 mb-6">
-                We've initiated your automated newsletter link. If your system blocked the direct launch, use our secure email contact below.
-            </p>
+    <!-- Interactive Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-navy/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl border-4 border-navy max-w-md w-full p-6 relative shadow-[8px_8px_0px_0px_#1E22AA] animate-in fade-in zoom-in-95 duration-200">
+            <!-- Close Modal -->
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-navy font-bold text-xl focus:outline-none">&times;</button>
             
-            <div class="space-y-2">
-                <button id="copyEmailBtn" class="w-full rounded-2xl bg-[#FF5A5F] py-3 text-sm font-bold text-white hover:bg-red-500 transition-colors">
-                    Copy Backup Email
-                </button>
-                <button id="closeModalBtn" class="w-full rounded-2xl border border-gray-300 py-2 text-xs font-semibold text-gray-500 hover:bg-gray-50 transition-colors">
-                    Dismiss Window
+            <div class="text-center space-y-4">
+                <span class="text-5xl block">🎉</span>
+                <h3 class="font-display font-black text-2xl text-navy">One Last Step!</h3>
+                <p class="text-sm text-gray-700">
+                    We've initiated a subscription request via your default email application. 
+                </p>
+                <p class="text-xs text-gray-500 bg-cream p-3 rounded-xl border border-navy/20">
+                    Please send the generated email to <strong class="text-navy">irvingrentaltea@gmail.com</strong> with the subject or content <strong class="text-vibrantRed">"Subscribe"</strong>.
+                </p>
+
+                <!-- Copy Feedback & Button -->
+                <div class="space-y-2 pt-2">
+                    <button id="copy-email-btn" class="w-full bg-vibrantRed text-white font-bold py-3 rounded-xl brew-shadow text-sm">
+                        Copy Email Address
+                    </button>
+                    <span id="copy-feedback" class="text-xs text-emerald-600 font-bold hidden">Email address copied to clipboard!</span>
+                </div>
+                
+                <button id="ok-btn" class="w-full bg-navy text-white font-bold py-2 rounded-xl text-xs hover:bg-navy/90 mt-2">
+                    Close Window
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- INTERACTIVE LOGIC JAVASCRIPT -->
+    <!-- Interactive Logic -->
     <script>
-        const subForm = document.getElementById('subForm');
-        const successModal = document.getElementById('successModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const copyEmailBtn = document.getElementById('copyEmailBtn');
-        const emailInput = document.getElementById('emailInput');
+        const form = document.getElementById('subscribe-form');
+        const emailInput = document.getElementById('subscriber-email');
+        const modal = document.getElementById('success-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const okBtn = document.getElementById('ok-btn');
+        const copyEmailBtn = document.getElementById('copy-email-btn');
+        const copyFeedback = document.getElementById('copy-feedback');
 
-        const targetEmail = 'subscribe@irvingtea.local'; 
+        const targetEmail = "irvingrentaltea@gmail.com";
 
-        subForm.addEventListener('submit', function(e) {
+        // Handle Form Submission
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const userEmail = emailInput.value;
-            
-            // Build mailto string securely
-            const mailtoUrl = `mailto:${targetEmail}?subject=Newsletter%20Subscription&body=Please%20add%20my%20email%20(${encodeURIComponent(userEmail)})%20to%20the%20Irving%20Tea%20Vibe%20Check%20newsletter%20list.`;
-            
-            // Trigger Mailto application
-            window.location.href = mailtoUrl;
-
-            // Trigger Success Modal
-            successModal.classList.remove('opacity-0', 'pointer-events-none');
-            successModal.querySelector('div').classList.remove('scale-95');
+            const email = emailInput.value.trim();
+            if (email) {
+                // Open mailto scheme
+                const subject = encodeURIComponent("Subscribe to Irving Tea");
+                const body = encodeURIComponent(`Please subscribe my email address (${email}) to the Irving Tea newsletter.`);
+                window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+                
+                // Trigger success modal state
+                showModal();
+            }
         });
 
-        // Close Modal implementation
-        function closeModal() {
-            successModal.classList.add('opacity-0', 'pointer-events-none');
-            successModal.querySelector('div').classList.add('scale-95');
-            subForm.reset();
+        // Toggle Modal Functions
+        function showModal() {
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
         }
 
-        closeModalBtn.addEventListener('click', closeModal);
-        
-        // Backup copy logic
-        copyEmailBtn.addEventListener('click', function() {
-            // Using iframe-safe text copy standard fallback
-            const tempInput = document.createElement('input');
-            tempInput.value = targetEmail;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
+        function hideModal() {
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            copyFeedback.classList.add('hidden');
+        }
 
-            const originalText = copyEmailBtn.innerText;
-            copyEmailBtn.innerText = 'Copied to Clipboard! ✓';
-            copyEmailBtn.classList.replace('bg-[#FF5A5F]', 'bg-green-600');
-            
-            setTimeout(() => {
-                copyEmailBtn.innerText = originalText;
-                copyEmailBtn.classList.replace('bg-green-600', 'bg-[#FF5A5F]');
-            }, 2000);
+        // Event listeners for closing
+        closeModalBtn.addEventListener('click', hideModal);
+        okBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                hideModal();
+            }
         });
 
-        // Close on clicking modal backdrop blur zone
-        successModal.addEventListener('click', function(e) {
-            if (e.target === successModal) closeModal();
+        // Copy Email to Clipboard (Canvas Guardrail Compatible)
+        copyEmailBtn.addEventListener('click', function() {
+            // Create fallback input element
+            const el = document.createElement('textarea');
+            el.value = targetEmail;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            // Toggle feedback UI
+            copyFeedback.classList.remove('hidden');
+            setTimeout(() => {
+                copyFeedback.classList.add('hidden');
+            }, 3000);
         });
     </script>
 </body>
